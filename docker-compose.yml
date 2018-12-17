@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+    web:
+        container_name: django-on-docker-web
+        build: .
+        command: ["./wait-for-db.sh", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+    db:
+        container_name: django-on-docker-db
+        image: postgres:9.6
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./docker-db-data/postgres:/var/lib/postgresql/data
