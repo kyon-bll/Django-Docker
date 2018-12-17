@@ -33,6 +33,34 @@ $ docker-compose up
 http://localhost:8000/ にアクセスして、以下の画面が表示されれば完了です。
 ![image.png](https://qiita-image-store.s3.amazonaws.com/0/190905/d6910059-b01a-ccd0-f5b0-8aa8e9774277.png)
 
+#### DB 設定
+
+`django_project_name` ディレクトリ内の `settings.py` の DATABASES の記述を PostgreSQL 用に書き直します。
+
+```python:settings.py
+...
+# Database
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
+}
+...
+```
+
+```bash
+$ docker-compose exec web python manage.py migrate
+```
+
+migrate に成功すれば完了です。
+
 
 # 以降の操作
 
