@@ -22,7 +22,7 @@ $ docker-compose run web django-admin startproject django_project_name .
 1. django_project_name ディレクトリ
 2. manage.py ファイル
 
-また、docker-db-data ディレクトリには PostgreSQL のデータが配置されます。
+また、docker/postgres/ ディレクトリには PostgreSQL のデータが配置されます。
 
 #### 起動
 
@@ -86,7 +86,7 @@ $ ...
 1. PostgreSQL のバージョン指定: docker-compose.yml の17行目
 1. apt-get でのパッケージインストール: Dockerfile コメントアウト箇所参照
 
-# wait-for-db.sh て何
+# docker/wait-for-db.sh て何
 
 DB の準備ができる前に Django から DB へアクセスがあると、エラーで動かなくなってしまうのを防いでいます。
 docker-compose.yml の `depends_on` の記述によって、DB -> Django の順に起動はしてくれるのですが、DB の準備が整うまでは待ってくれないので、環境によってこれがないとうまく動かないことがあります。というか自分はほぼ毎回そうなります。なんとかもうちょっと綺麗に解決したい。

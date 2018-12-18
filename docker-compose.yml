@@ -4,7 +4,7 @@ services:
     web:
         container_name: django-on-docker-web
         build: .
-        command: ["./wait-for-db.sh", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+        command: ["./docker/wait-for-db.sh", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
         volumes:
             - .:/code
         ports:
@@ -17,4 +17,4 @@ services:
         ports:
             - "5432:5432"
         volumes:
-            - ./docker-db-data/postgres:/var/lib/postgresql/data
+            - ./docker/postgres:/var/lib/postgresql/data
