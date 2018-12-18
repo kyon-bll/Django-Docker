@@ -182,4 +182,4 @@ dmypy.json
 # End of https://www.gitignore.io/api/python,django
 
 # docker
-docker-db-data
+docker/postgres
