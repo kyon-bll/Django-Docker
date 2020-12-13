@@ -1,20 +1,50 @@
-version: '3.1'
-
+version: '3'
+ 
 services:
-    web:
-        container_name: django-on-docker-web
-        build: .
-        command: ["./docker/wait-for-db.sh", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
-        volumes:
-            - .:/code
-        ports:
-            - "8000:8000"
-        depends_on:
-            - db
-    db:
-        container_name: django-on-docker-db
-        image: postgres:9.6
-        ports:
-            - "5432:5432"
-        volumes:
-            - ./docker/postgres:/var/lib/postgresql/data
+  # db:
+  #   image: postgres:9.6
+  #   ports:
+  #           - 5432:5432
+  #   environment:
+  #           - POSTGRES_PASSWORD=postgres
+  #   volumes:
+  #           - ./db-data:/var/lib/postgresql/data
+  #   container_name: postgres
+ 
+  web:
+    restart: always
+    build: .
+    command: bash -c "python manage.py runserver 0.0.0.0:8000 && python manage.py migrate"
+    volumes:
+            - ./app:/code
+    ports:
+            - 8000:8000
+    # depends_on:
+    #         - db
+    container_name: django
+ 
+  # https://qiita.com/github0013@github/items/71c44d7bf4faf63c1956
+  # https://qiita.com/kuboon/items/f424b84c718619460c6f
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+            - 80:80
+            - 443:443
+    links:
+            - web
+    restart: always
+    environment:
+      DOMAINS: 'example.com -> http://web:8000'
+      STAGE: 'local'
+      # STAGE: 'production' # Don't use production until staging works
+      # STAGE: 'staging'
+      CLIENT_MAX_BODY_SIZE: 10M
+      #  CLIENT_MAX_BODY_SIZE: 0  # これだと無制限
+      #FORCE_RENEW: 'true'
+    container_name: https-portal
+    volumes:
+            - ./ssl_certs:/var/lib/https-portal
+ 
+volumes:
+    # db-data:
+    ssl_certs:

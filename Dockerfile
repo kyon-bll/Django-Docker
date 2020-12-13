@@ -1,10 +1,10 @@
-FROM python:3.6.5
+FROM python:3
 ENV PYTHONUNBUFFERED 1
-
-# pip install
-RUN mkdir /code
+RUN mkdir ./code
 WORKDIR /code
-ADD requirements.txt /code/
-RUN pip install --upgrade pip
+COPY requirements.txt /code/
 RUN pip install -r requirements.txt
-ADD . /code/
+RUN pip install django-sslserver
+RUN pip install --upgrade pip
+RUN pip install --upgrade setuptools
+COPY . /code/
