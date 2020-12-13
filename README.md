@@ -1,4 +1,10 @@
-# Django-on-Docker
+# Django-Docker
+
+Django, gunicorn, https-portal(nginx)
+あとオプションで PostgreSQL も使えるようにコメントアウトしてある
+
+ssl 対応は以下を参照
+https://genchan.net/it/virtualization/docker/331/#Docker-composeNginxDjangoPostgreSQLWebSSL
 
 #### Django 用の Docker イメージを Dockerfile から作成
 
