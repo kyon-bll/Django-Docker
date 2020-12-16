@@ -1,3 +1,5 @@
 Django
 # psycopg2
 gunicorn
+flake8
+autopep8

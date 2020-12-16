@@ -1,0 +1,25 @@
+{
+	"name": "Django Project",
+	"dockerFile": "../Dockerfile",
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.linting.pylintEnabled": false,
+		"python.linting.flake8Enabled": true,
+		"python.linting.flake8Args": [
+			"--max-line-length=119",
+		],
+		"python.formatting.provider": "autopep8",
+		"python.formatting.autopep8Args": [
+			"--max-line-length",
+			"119"
+		],
+		"[python]": {
+			"editor.formatOnSave": true
+		}
+	},
+	"extensions": [
+		"ms-python.python",
+		"ms-pyright.pyright"
+	]
+}

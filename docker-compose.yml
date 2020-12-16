@@ -22,7 +22,9 @@ services:
     # depends_on:
     #         - db
     container_name: django
- 
+    
+  # https://sleepless-se.net/2018/06/12/dockerdjango%E3%82%92%E7%84%A1%E6%96%99%E3%81%A7https%E5%8C%96%E3%81%97%E3%81%A6%E7%B0%A1%E5%8D%98%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95/
+  # https://genchan.net/it/virtualization/docker/331/#Docker-composeNginxDjangoPostgreSQLWebSSL       
   # https://qiita.com/github0013@github/items/71c44d7bf4faf63c1956
   # https://qiita.com/kuboon/items/f424b84c718619460c6f
   https-portal:
@@ -44,7 +46,7 @@ services:
     container_name: https-portal
     volumes:
             - ./ssl_certs:/var/lib/https-portal
- 
+
 volumes:
     # db-data:
     ssl_certs:
