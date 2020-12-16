@@ -22,12 +22,13 @@ $ docker-compose build
 ```shell
 $ docker-compose run web django-admin startproject django_project_name .
 ```
-もしくは
+もしくはプロジェクトテンプレートを使用
 ```shell
 $ docker-compose run web django-admin startproject --template https://github.com/kyon-bll/Django-ProjectTemplate/archive/main.zip django_project_name .
 ```
 
 最後の `.` を忘れないように注意してください。
+プロジェクトテンプレートを使用した場合は以下のディレクトリ、ファイルは適宜読み替えて下さい
 
 このコマンドで、 Django プロジェクトに関するファイルが作成されます。
 1. django_project_name ディレクトリ
@@ -49,9 +50,7 @@ PostgreSQL を Docker 内で立ち上げる場合、 `docker-compose.yml` のコ
 
 ```python:settings.py
 ...
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+# DB 情報
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
