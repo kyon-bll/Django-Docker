@@ -22,6 +22,10 @@ $ docker-compose build
 ```shell
 $ docker-compose run web django-admin startproject django_project_name .
 ```
+もしくは
+```shell
+$ docker-compose run web django-admin startproject --template https://github.com/kyon-bll/Django-ProjectTemplate/archive/main.zip django_project_name .
+```
 
 最後の `.` を忘れないように注意してください。
 
