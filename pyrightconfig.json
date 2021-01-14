@@ -1,0 +1,9 @@
+{
+    "executionEnvironments": [
+        {
+            "extraPaths": [
+                "app/apps"
+            ]
+        }
+    ]
+}
